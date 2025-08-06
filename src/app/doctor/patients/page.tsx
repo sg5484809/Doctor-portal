@@ -51,11 +51,18 @@ export default function DoctorPatientsPage() {
     <div className="min-h-screen bg-gray-50 text-gray-800 p-6">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-semibold text-blue-500">Patient Appointments</h1>
-        <Link href="/doctor/calendar">
-          <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded cursor-pointer">
-            View Calendar
-          </button>
-        </Link>
+        <div className="flex gap-4">
+          <Link href="/doctor/calendar">
+            <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded cursor-pointer">
+              View Calendar
+            </button>
+          </Link>
+          <Link href="/doctor/prescriptions">
+            <button className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded cursor-pointer">
+              Make Prescription
+            </button>
+          </Link>
+        </div>
       </div>
 
       {loading ? (
