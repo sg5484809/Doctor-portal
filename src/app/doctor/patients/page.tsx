@@ -57,13 +57,8 @@ export default function DoctorPatientsPage() {
               View Calendar
             </button>
           </Link>
-          <Link href="/doctor/prescriptions">
-            <button className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded cursor-pointer">
-              Make Prescription
-            </button>
-          </Link>
         </div>
-      </div> 
+      </div>
 
       {loading ? (
         <div className="text-center text-gray-600">Loading...</div>
@@ -81,22 +76,33 @@ export default function DoctorPatientsPage() {
               <p><strong className="text-gray-700">Time:</strong> {patient.appointmentTime}</p>
               <p><strong className="text-gray-700">Status:</strong> <span className="capitalize">{patient.status}</span></p>
 
-              {patient.status === 'pending' && (
-                <div className="mt-4 flex gap-4">
-                  <button
-                    onClick={() => handleStatusChange(patient.id, 'cancelled')}
-                    className="bg-red-500 hover:bg-red-600 text-white py-1 px-4 rounded cursor-pointer"
+              <div className="mt-4 flex flex-wrap gap-4">
+                {patient.status === 'pending' && (
+                  <>
+                    <button
+                      onClick={() => handleStatusChange(patient.id, 'cancelled')}
+                      className="bg-red-500 hover:bg-red-600 text-white py-1 px-4 rounded cursor-pointer"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      onClick={() => handleStatusChange(patient.id, 'seen')}
+                      className="bg-green-500 hover:bg-green-600 text-white py-1 px-4 rounded cursor-pointer"
+                    >
+                      Mark as Seen
+                    </button>
+                  </>
+                )}
+
+                {patient.status === 'seen' && (
+                  <Link
+                    href={`/doctor/prescriptions?patientId=${patient.id}&name=${encodeURIComponent(patient.name)}`}
+                    className="bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-4 rounded cursor-pointer"
                   >
-                    Cancel
-                  </button>
-                  <button
-                    onClick={() => handleStatusChange(patient.id, 'seen')}
-                    className="bg-green-500 hover:bg-green-600 text-white py-1 px-4 rounded cursor-pointer"
-                  >
-                    Mark as Seen
-                  </button>
-                </div>
-              )}
+                    Make Prescription
+                  </Link>
+                )}
+              </div>
             </div>
           ))}
         </div>
