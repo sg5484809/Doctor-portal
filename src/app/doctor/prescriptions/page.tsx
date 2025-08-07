@@ -170,7 +170,7 @@ export default function PrescriptionsPage() {
                   >
                     Delete
                   </button>
-                </div>
+                </div> 
               </div>
             );
           })}

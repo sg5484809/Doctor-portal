@@ -63,7 +63,7 @@ export default function DoctorPatientsPage() {
             </button>
           </Link>
         </div>
-      </div>
+      </div> 
 
       {loading ? (
         <div className="text-center text-gray-600">Loading...</div>
